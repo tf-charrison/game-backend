@@ -15,6 +15,7 @@ class AuthController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user && user.authenticate(params[:password])
+      user.update(last_logged_in: Time.current)
       token = encode_token(user.id)
       render json: { token: token }
     else

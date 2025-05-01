@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   post '/register', to: 'auth#register'
   post '/login', to: 'auth#login'
-
+  resources :scores, only: [:create, :index]
   # Defines the root path route ("/")
   # root "posts#index"
 end
