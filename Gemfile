@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-
+gem 'pry'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.1", ">= 7.2.1.1"
 # Use sqlite3 as the database for Active Record
@@ -32,6 +32,7 @@ gem "bootsnap", require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'rack-cors'
+gem 'mysql2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
