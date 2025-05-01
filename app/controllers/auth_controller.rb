@@ -15,7 +15,6 @@ class AuthController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user && user.authenticate(params[:password])
-      user.update(last_logged_in: Time.current)
       token = encode_token(user.id)
       render json: { token: token }
     else
@@ -24,13 +23,13 @@ class AuthController < ApplicationController
   end
 
   private
-
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    # Permit the username field here
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 
   # Encode JWT token
   def encode_token(user_id)
-    JWT.encode({ user_id: user_id }, Rails.application.secret_key_base, 'HS256')
+    JWT.encode({ user_id: user_id }, Rails.application.credentials.secret_key_base, 'HS256')
   end
 end
