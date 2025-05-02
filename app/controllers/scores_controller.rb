@@ -8,7 +8,6 @@ class ScoresController < ApplicationController
   end
 
   def create
-    # Associate the score with the authenticated user
     score = @current_user.scores.build(score_params)
 
     if score.save
@@ -24,7 +23,7 @@ class ScoresController < ApplicationController
     params.permit(:score, :difficulty)
   end
 
-  # JWT authentication
+  # Decode to find the user id
   def authorize_request
     header = request.headers['Authorization']
     token = header.split.last if header
